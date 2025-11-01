@@ -1,7 +1,7 @@
-import type { App } from "obsidian";
-import { TFile } from "obsidian";
-import { type IMoveFileToAstroOpt, moveObFile } from "./move-file";
-import { RelatedMoveConfirmModal } from "../batch-confirm-move-modal/index.js";
+import type { App } from 'obsidian';
+import { TFile } from 'obsidian';
+import { type IMoveFileToAstroOpt, moveObFile } from './move-file';
+import { RelatedMoveConfirmModal } from '../batch-confirm-move-modal';
 
 /**
  * Information about a file to be moved
@@ -206,10 +206,7 @@ function findAllOutlinks(
  * @param app Obsidian app instance
  * @returns Set of all related files found by following outlinks
  */
-function scanRelatedFilesByOutlinks(
-	startFile: TFile,
-	app: App,
-): Set<TFile> {
+function scanRelatedFilesByOutlinks(startFile: TFile, app: App): Set<TFile> {
 	const allRelatedFiles = new Set<TFile>();
 	const fileToScan: TFile[] = [startFile];
 	const scannedFiles = new Set<TFile>();
@@ -345,9 +342,13 @@ function showRelatedMoveConfirmModal(
 	app: App,
 ): Promise<Set<TFile> | null> {
 	return new Promise((resolve) => {
-		const modal = new RelatedMoveConfirmModal(app, fileInfos, (selectedFiles) => {
-			resolve(selectedFiles);
-		});
+		const modal = new RelatedMoveConfirmModal(
+			app,
+			fileInfos,
+			(selectedFiles) => {
+				resolve(selectedFiles);
+			},
+		);
 		modal.open();
 	});
 }

@@ -1,5 +1,5 @@
-import type { TFile } from "obsidian";
-import { isImageFile } from "./is-image";
+import type { TFile } from 'obsidian';
+import { isImageFile } from './is-image';
 
 export function getDistFilePath(file: TFile, folder: string) {
 	if (isImageFile(file)) {

@@ -1,7 +1,7 @@
-import { type App, Modal, TFile } from "obsidian";
-import { getI18nInst } from "../configs/i18n.js";
-import type { IFileMoveInfo } from "../api/move-files.js";
-import "./styles.css";
+import { type App, Modal, TFile } from 'obsidian';
+import { getI18nInst } from '../configs/i18n';
+import type { IFileMoveInfo } from '../api/move-files';
+import './styles.css';
 
 export class RelatedMoveConfirmModal extends Modal {
 	private fileInfos: IFileMoveInfo[];
@@ -18,8 +18,6 @@ export class RelatedMoveConfirmModal extends Modal {
 		super(app);
 		this.fileInfos = fileInfos;
 
-		console.log("fileInfos", fileInfos);
-
 		// By default, select all files with backlinks.length <= 1
 		// Files with backlinks.length > 1 need user confirmation
 		this.selectedFiles = new Set(
@@ -30,41 +28,40 @@ export class RelatedMoveConfirmModal extends Modal {
 		this.onConfirm = onConfirm;
 	}
 
-
 	onOpen() {
 		const { contentEl } = this;
 		const i18n = getI18nInst();
 		contentEl.empty();
 
 		// Title
-		contentEl.createEl("h2", {
-			text: i18n.t("Related Move Files"),
+		contentEl.createEl('h2', {
+			text: i18n.t('Related Move Files'),
 		});
 
 		// Description
-		contentEl.createEl("p", {
+		contentEl.createEl('p', {
 			text: i18n.t(
-				"Files to be moved. Please review and select files with multiple references.",
+				'Files to be moved. Please review and select files with multiple references.',
 			),
 		});
 
 		// Related select checkbox
 
-		const selectContainer = contentEl.createEl("div", {
-			cls: "related-move-modal-select-container",
+		const selectContainer = contentEl.createEl('div', {
+			cls: 'related-move-modal-select-container',
 		});
 
-		const relatedSelectContainer = selectContainer.createEl("div", {
-			cls: "related-move-modal-related-select",
+		const relatedSelectContainer = selectContainer.createEl('div', {
+			cls: 'related-move-modal-related-select',
 		});
-		const relatedSelectCheckbox = relatedSelectContainer.createEl("input", {
-			type: "checkbox",
-			cls: "related-move-modal-checkbox",
+		const relatedSelectCheckbox = relatedSelectContainer.createEl('input', {
+			type: 'checkbox',
+			cls: 'related-move-modal-checkbox',
 		}) as HTMLInputElement;
-		relatedSelectCheckbox.id = "related-select-checkbox";
-		relatedSelectContainer.createEl("label", {
-			text: i18n.t("Related Select"),
-			attr: { for: "related-select-checkbox" },
+		relatedSelectCheckbox.id = 'related-select-checkbox';
+		relatedSelectContainer.createEl('label', {
+			text: i18n.t('Related Select'),
+			attr: { for: 'related-select-checkbox' },
 		});
 		relatedSelectCheckbox.checked = this.relatedSelectEnabled;
 		relatedSelectCheckbox.onchange = (e) => {
@@ -77,17 +74,17 @@ export class RelatedMoveConfirmModal extends Modal {
 		};
 
 		// Cascade checkbox
-		const cascadeContainer = selectContainer.createEl("div", {
-			cls: "related-move-modal-related-select",
+		const cascadeContainer = selectContainer.createEl('div', {
+			cls: 'related-move-modal-related-select',
 		});
-		const cascadeCheckbox = cascadeContainer.createEl("input", {
-			type: "checkbox",
-			cls: "related-move-modal-checkbox",
+		const cascadeCheckbox = cascadeContainer.createEl('input', {
+			type: 'checkbox',
+			cls: 'related-move-modal-checkbox',
 		}) as HTMLInputElement;
-		cascadeCheckbox.id = "cascade-checkbox";
-		cascadeContainer.createEl("label", {
-			text: i18n.t("Cascade"),
-			attr: { for: "cascade-checkbox" },
+		cascadeCheckbox.id = 'cascade-checkbox';
+		cascadeContainer.createEl('label', {
+			text: i18n.t('Cascade'),
+			attr: { for: 'cascade-checkbox' },
 		});
 		cascadeCheckbox.checked = this.cascadeEnabled;
 		cascadeCheckbox.onchange = (e) => {
@@ -100,62 +97,62 @@ export class RelatedMoveConfirmModal extends Modal {
 		};
 
 		// Table container with scroll
-		const tableContainer = contentEl.createEl("div", {
-			cls: "related-move-modal-container",
+		const tableContainer = contentEl.createEl('div', {
+			cls: 'related-move-modal-container',
 		});
 
 		// Create table
-		const table = tableContainer.createEl("table", {
-			cls: "related-move-modal-table",
+		const table = tableContainer.createEl('table', {
+			cls: 'related-move-modal-table',
 		});
 
 		// Table header
-		const thead = table.createEl("thead");
-		const headerRow = thead.createEl("tr", {
-			cls: "related-move-modal-table-header-row",
+		const thead = table.createEl('thead');
+		const headerRow = thead.createEl('tr', {
+			cls: 'related-move-modal-table-header-row',
 		});
 
-		headerRow.createEl("th", {
-			cls: "related-move-modal-table-header-cell related-move-modal-table-header-cell-checkbox",
+		headerRow.createEl('th', {
+			cls: 'related-move-modal-table-header-cell related-move-modal-table-header-cell-checkbox',
 		});
 
-		 headerRow.createEl("th", {
-			text: i18n.t("File Name"),
-			cls: "related-move-modal-table-header-cell",
+		headerRow.createEl('th', {
+			text: i18n.t('File Name'),
+			cls: 'related-move-modal-table-header-cell',
 		});
 
-		headerRow.createEl("th", {
-			text: i18n.t("Reference Info"),
-			cls: "related-move-modal-table-header-cell related-move-modal-table-header-cell-ref-info",
+		headerRow.createEl('th', {
+			text: i18n.t('Reference Info'),
+			cls: 'related-move-modal-table-header-cell related-move-modal-table-header-cell-ref-info',
 		});
 
-		headerRow.createEl("th", {
-			text: i18n.t("Referenced By"),
-			cls: "related-move-modal-table-header-cell",
+		headerRow.createEl('th', {
+			text: i18n.t('Referenced By'),
+			cls: 'related-move-modal-table-header-cell',
 		});
 
 		// Table body
-		const tbody = table.createEl("tbody");
+		const tbody = table.createEl('tbody');
 
 		// Render each file as a table row
 		for (const fileInfo of this.fileInfos) {
 			const refCount = fileInfo.backlinks.length;
-			const rowClasses = ["related-move-modal-table-row"];
+			const rowClasses = ['related-move-modal-table-row'];
 			if (refCount > 1) {
-				rowClasses.push("related-move-modal-table-row-warning");
+				rowClasses.push('related-move-modal-table-row-warning');
 			}
-			const row = tbody.createEl("tr", {
-				cls: rowClasses.join(" "),
+			const row = tbody.createEl('tr', {
+				cls: rowClasses.join(' '),
 			});
 
 			// Checkbox cell
-			const checkboxCell = row.createEl("td", {
-				cls: "related-move-modal-table-cell",
+			const checkboxCell = row.createEl('td', {
+				cls: 'related-move-modal-table-cell',
 			});
-			const checkbox = checkboxCell.createEl("input", {
-				type: "checkbox",
-				cls: "related-move-modal-checkbox",
-				attr: { "data-file-path": fileInfo.file.path },
+			const checkbox = checkboxCell.createEl('input', {
+				type: 'checkbox',
+				cls: 'related-move-modal-checkbox',
+				attr: { 'data-file-path': fileInfo.file.path },
 			}) as HTMLInputElement;
 			checkbox.checked = this.selectedFiles.has(fileInfo.file);
 			checkbox.onchange = (e) => {
@@ -193,7 +190,6 @@ export class RelatedMoveConfirmModal extends Modal {
 						for (const refFile of fileInfo.links) {
 							this.selectedFiles.delete(refFile);
 						}
-
 					}
 					needsUpdate = true;
 				} else {
@@ -208,11 +204,15 @@ export class RelatedMoveConfirmModal extends Modal {
 				// Update all checkboxes to reflect the changes if needed
 				if (needsUpdate) {
 					tableContainer
-						.querySelectorAll<HTMLInputElement>("input[type='checkbox'][data-file-path]")
+						.querySelectorAll<HTMLInputElement>(
+							"input[type='checkbox'][data-file-path]",
+						)
 						.forEach((cb: HTMLInputElement) => {
 							const filePath = cb.dataset.filePath;
 							if (filePath) {
-								const file = this.fileInfos.find((info) => info.file.path === filePath);
+								const file = this.fileInfos.find(
+									(info) => info.file.path === filePath,
+								);
 								if (file) {
 									cb.checked = this.selectedFiles.has(file.file);
 								}
@@ -223,13 +223,13 @@ export class RelatedMoveConfirmModal extends Modal {
 			};
 
 			// File name cell
-			const fileNameCell = row.createEl("td", {
-				cls: "related-move-modal-table-cell",
+			const fileNameCell = row.createEl('td', {
+				cls: 'related-move-modal-table-cell',
 			});
-			const fileNameLink = fileNameCell.createEl("a", {
+			const fileNameLink = fileNameCell.createEl('a', {
 				text: fileInfo.file.name,
 				href: fileInfo.file.path,
-				cls: "related-move-modal-file-link",
+				cls: 'related-move-modal-file-link',
 			});
 			fileNameLink.onClickEvent(async (e) => {
 				e.preventDefault();
@@ -242,54 +242,54 @@ export class RelatedMoveConfirmModal extends Modal {
 
 			// Reference info cell
 			const refInfoCellClasses = [
-				"related-move-modal-table-cell",
-				"related-move-modal-ref-info",
+				'related-move-modal-table-cell',
+				'related-move-modal-ref-info',
 			];
 			if (refCount === 0) {
-				refInfoCellClasses.push("related-move-modal-ref-info-root");
+				refInfoCellClasses.push('related-move-modal-ref-info-root');
 			} else if (refCount > 1) {
-				refInfoCellClasses.push("related-move-modal-ref-info-warning");
+				refInfoCellClasses.push('related-move-modal-ref-info-warning');
 			}
-			const refInfoCell = row.createEl("td", {
-				cls: refInfoCellClasses.join(" "),
+			const refInfoCell = row.createEl('td', {
+				cls: refInfoCellClasses.join(' '),
 			});
 
 			if (refCount === 0) {
-				refInfoCell.textContent = i18n.t("Root file");
+				refInfoCell.textContent = i18n.t('Root file');
 			} else if (refCount === 1) {
 				refInfoCell.textContent = i18n
-					.t("Referenced by 1 file")
-					.replace("{count}", String(refCount));
+					.t('Referenced by 1 file')
+					.replace('{count}', String(refCount));
 			} else {
 				refInfoCell.textContent = i18n
-					.t("Referenced by count files - Needs confirmation")
-					.replace("{count}", String(refCount));
+					.t('Referenced by count files - Needs confirmation')
+					.replace('{count}', String(refCount));
 			}
 
 			// Referenced files cell
-			const refFilesCell = row.createEl("td", {
-				cls: "related-move-modal-table-cell related-move-modal-ref-files",
+			const refFilesCell = row.createEl('td', {
+				cls: 'related-move-modal-table-cell related-move-modal-ref-files',
 			});
 
 			if (refCount === 0) {
-				refFilesCell.textContent = "-";
+				refFilesCell.textContent = '-';
 			} else if (refCount === 1) {
 				// Don't show referenced files when count is 1
-				refFilesCell.textContent = "-";
+				refFilesCell.textContent = '-';
 			} else {
 				// Show list when count >= 2
-				const refFilesList = refFilesCell.createEl("ul", {
-					cls: "related-move-modal-ref-files-list",
+				const refFilesList = refFilesCell.createEl('ul', {
+					cls: 'related-move-modal-ref-files-list',
 				});
 
 				fileInfo.backlinks.forEach((refFile) => {
-					const listItem = refFilesList.createEl("li", {
-						cls: "related-move-modal-ref-files-list-item",
+					const listItem = refFilesList.createEl('li', {
+						cls: 'related-move-modal-ref-files-list-item',
 					});
-					const refLink = listItem.createEl("a", {
+					const refLink = listItem.createEl('a', {
 						text: refFile.name,
 						href: refFile.path,
-						cls: "related-move-modal-ref-link",
+						cls: 'related-move-modal-ref-link',
 					});
 					refLink.onClickEvent(async (e) => {
 						e.preventDefault();
@@ -304,33 +304,35 @@ export class RelatedMoveConfirmModal extends Modal {
 		}
 
 		// Statistics
-		const statsDiv = contentEl.createEl("div", {
-			cls: "related-move-modal-stats",
+		const statsDiv = contentEl.createEl('div', {
+			cls: 'related-move-modal-stats',
 		});
 
 		const updateStats = () => {
-		const totalFiles = this.fileInfos.length;
-		const selectedCount = this.selectedFiles.size;
-		const needsConfirmation = this.fileInfos.filter(
-			(info) => info.backlinks.length > 1,
-		).length;
+			const totalFiles = this.fileInfos.length;
+			const selectedCount = this.selectedFiles.size;
+			const needsConfirmation = this.fileInfos.filter(
+				(info) => info.backlinks.length > 1,
+			).length;
 
 			statsDiv.textContent = i18n
-				.t("Total: total files, Selected: selected files, Needs confirmation: confirmation files")
-				.replace("{total}", String(totalFiles))
-				.replace("{selected}", String(selectedCount))
-				.replace("{confirmation}", String(needsConfirmation));
+				.t(
+					'Total: total files, Selected: selected files, Needs confirmation: confirmation files',
+				)
+				.replace('{total}', String(totalFiles))
+				.replace('{selected}', String(selectedCount))
+				.replace('{confirmation}', String(needsConfirmation));
 		};
 
 		updateStats();
 
 		// Buttons
-		const buttonContainer = contentEl.createEl("div", {
-			cls: "modal-button-container related-move-modal-button-container",
+		const buttonContainer = contentEl.createEl('div', {
+			cls: 'modal-button-container related-move-modal-button-container',
 		});
 
-		const selectAllButton = buttonContainer.createEl("button", {
-			text: i18n.t("Select All"),
+		const selectAllButton = buttonContainer.createEl('button', {
+			text: i18n.t('Select All'),
 		});
 		selectAllButton.onClickEvent(() => {
 			this.selectedFiles = new Set(this.fileInfos.map((info) => info.file));
@@ -343,8 +345,8 @@ export class RelatedMoveConfirmModal extends Modal {
 			updateStats();
 		});
 
-		const deselectAllButton = buttonContainer.createEl("button", {
-			text: i18n.t("Deselect All"),
+		const deselectAllButton = buttonContainer.createEl('button', {
+			text: i18n.t('Deselect All'),
 		});
 		deselectAllButton.onClickEvent(() => {
 			this.selectedFiles.clear();
@@ -357,17 +359,17 @@ export class RelatedMoveConfirmModal extends Modal {
 			updateStats();
 		});
 
-		const confirmButton = buttonContainer.createEl("button", {
-			text: i18n.t("Confirm"),
-			cls: "mod-cta",
+		const confirmButton = buttonContainer.createEl('button', {
+			text: i18n.t('Confirm'),
+			cls: 'mod-cta',
 		});
 		confirmButton.onClickEvent(() => {
 			this.close();
 			this.onConfirm(this.selectedFiles);
 		});
 
-		const cancelButton = buttonContainer.createEl("button", {
-			text: i18n.t("Cancel"),
+		const cancelButton = buttonContainer.createEl('button', {
+			text: i18n.t('Cancel'),
 		});
 		cancelButton.onClickEvent(() => {
 			this.close();

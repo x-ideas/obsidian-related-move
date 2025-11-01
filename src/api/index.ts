@@ -1,2 +1,2 @@
-export * from "./move-file.js";
-export * from "./move-files.js";
+export * from './move-file';
+export * from './move-files';

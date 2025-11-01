@@ -1,4 +1,4 @@
-import { fs } from "memfs";
+import { fs } from 'memfs';
 
 export default fs.promises;
 

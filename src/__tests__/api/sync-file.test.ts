@@ -1,16 +1,16 @@
-import { mkdir } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { mkdir } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 // biome-ignore lint/style/useNodejsImportProtocol: <explanation>
-import path from "path";
-import type { App, TFile, Vault } from "obsidian";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import path from 'path';
+import type { App, TFile, Vault } from 'obsidian';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { vol } from "memfs";
-import { moveObFile } from "../../api/index.js";
+import { vol } from 'memfs';
+import { moveObFile } from '../../api/index.js';
 
-vi.unmock("node:fs/promises");
-vi.mock("fs");
-vi.mock("node:fs/promises");
+vi.unmock('node:fs/promises');
+vi.mock('fs');
+vi.mock('node:fs/promises');
 
 // vi.mock('node:fs');
 
@@ -22,23 +22,23 @@ beforeEach(() => {
 	vol.reset();
 });
 
-describe("sync-file", () => {
-	it("only current file", async () => {
+describe('sync-file', () => {
+	it('only current file', async () => {
 		const getFirstLinkpathDestFn = vi.fn().mockImplementation(() => {
-			return "/asserts/ww";
+			return '/asserts/ww';
 		});
 		const readFn = vi.fn().mockImplementation(async () => {
 			const vfs = await vi.importActual<{
 				readFile: (path: string, opt?: unknown) => Promise<string>;
-			}>("fs/promises");
+			}>('fs/promises');
 
 			// read ./mds/no-links.input.md
 			const content = await vfs.readFile(
-				path.resolve(__dirname, "./mds/no-links.input.md"),
-				"utf-8",
+				path.resolve(__dirname, './mds/no-links.input.md'),
+				'utf-8',
 			);
 
-			console.log("content", content);
+			console.log('content', content);
 			return content;
 		});
 		const app = {
@@ -52,10 +52,10 @@ describe("sync-file", () => {
 
 		const file: TFile = {
 			vault: app.vault as unknown as Vault,
-			path: "",
-			name: "no-links.input.md",
-			extension: "md",
-			basename: "no-links.input",
+			path: '',
+			name: 'no-links.input.md',
+			extension: 'md',
+			basename: 'no-links.input',
 			stat: {
 				ctime: Date.now(),
 				mtime: Date.now(),
@@ -64,11 +64,11 @@ describe("sync-file", () => {
 			parent: null,
 		};
 
-		await moveObFile(file, "/valid/path", { app });
+		await moveObFile(file, '/valid/path', { app });
 
 		expect(readFn).toHaveBeenCalledWith(file);
 		expect(getFirstLinkpathDestFn).not.toHaveBeenCalled();
-		expect(mkdir).toHaveBeenCalledWith("/valid/path", { recursive: true });
+		expect(mkdir).toHaveBeenCalledWith('/valid/path', { recursive: true });
 
 		expect(1).toBe(1);
 	});

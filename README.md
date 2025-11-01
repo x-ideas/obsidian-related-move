@@ -1,9 +1,14 @@
 # Obsidian Related Move Files
 
-move file and all the related files (inlinks) in the file tree to a new folder.
+move file and all the related files (inlinks) in the file tree to a new folder. Which can be used to organize your obsidian vault quickly.
 
-## How to use
-1. from folder tree
-2. from opened file setting(the top right corner icon)
-3. from command (Related Move Files)
+![demo](./docs/demo.gif)
 
+## Features
+
+- Move file and all the related files (inlinks) in the file tree to a new folder.
+- Support related select and cascade select.
+- Support move files to a new folder.
+- i18n support.
+
+## Installation

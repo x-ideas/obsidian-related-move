@@ -1,22 +1,22 @@
-import { MarkdownView, Notice, Plugin, TFile, TFolder } from "obsidian";
-import { moveFileAndInlinks } from "./api/move-files.js";
-import { getI18nInst } from "./configs/i18n.js";
-import { FolderSuggestModal } from "./target-select-modal/index.js";
+import { MarkdownView, Notice, Plugin, TFile, TFolder } from 'obsidian';
+import { moveFileAndInlinks } from './api/move-files';
+import { getI18nInst } from './configs/i18n';
+import { FolderSuggestModal } from './target-select-modal';
 
 export default class Main extends Plugin {
 	async onload() {
-		const name = getI18nInst().t("Related Move");
+		const name = getI18nInst().t('Related Move');
 
 		this.registerEvent(
 			// add file context menu
-			this.app.workspace.on("file-menu", (menu, file) => {
+			this.app.workspace.on('file-menu', (menu, file) => {
 				// exclude folder
 				if (file instanceof TFolder) {
 					return;
 				}
 
 				menu.addItem((item) => {
-					item.setIcon("circle-arrow-right");
+					item.setIcon('circle-arrow-right');
 					item.setTitle(name);
 					item.onClick(async () => {
 						// if file is TFile
@@ -31,9 +31,9 @@ export default class Main extends Plugin {
 
 		// add editor context menu
 		this.registerEvent(
-			this.app.workspace.on("editor-menu", (menu, _editor, view) => {
+			this.app.workspace.on('editor-menu', (menu, _editor, view) => {
 				menu.addItem((item) => {
-					item.setIcon("circle-arrow-right");
+					item.setIcon('circle-arrow-right');
 					item.setTitle(name);
 					item.onClick(async () => {
 						// gei current file
@@ -49,7 +49,7 @@ export default class Main extends Plugin {
 
 		// add command
 		this.addCommand({
-			id: "circle-arrow-right",
+			id: 'circle-arrow-right',
 			name: name,
 			callback: async () => {
 				await this.syncCurrentFile();
@@ -85,7 +85,7 @@ export default class Main extends Plugin {
 		}
 		const file = activeView.file;
 		if (!file) {
-			new Notice("No active file");
+			new Notice('No active file');
 			return;
 		}
 

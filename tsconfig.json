@@ -1,23 +1,8 @@
 {
-	"compilerOptions": {
-		"baseUrl": ".",
-		"types": ["node"],
-		"module": "ESNext",
-		"target": "ES6",
-		"allowJs": true,
-		"noImplicitAny": true,
-		"moduleResolution": "node",
-		"importHelpers": true,
-		"isolatedModules": true,
-		"strictNullChecks": true,
-		"lib": ["DOM", "ES5", "ES6", "ES7"],
-		"allowSyntheticDefaultImports": true,
-		"resolveJsonModule": true
-	},
-	"include": [
-		"**/*.ts",
-		"vite.config.mts",
-		"__mocks__/fs.ts",
-		"__mocks__/fs/promises.ts"
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"files": [],
+	"references": [
+		{ "path": "./tsconfig.app.json" },
+		{ "path": "./tsconfig.node.json" }
 	]
 }

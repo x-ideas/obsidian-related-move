@@ -1,5 +1,5 @@
-import en from "../locales/en.json";
-import zhCN from "../locales/zh.json";
+import en from '../locales/en.json';
+import zhCN from '../locales/zh.json';
 
 const i18nResources: Record<string, Record<string, string>> = {
 	en: en,
@@ -12,7 +12,7 @@ function getTranslation(lang: string): Record<string, string> | undefined {
 
 const i18nInst = {
 	t(key: string): string {
-		const lang = localStorage.getItem("language") || "en";
+		const lang = localStorage.getItem('language') || 'en';
 		const translate = getTranslation(lang);
 		return translate?.[key] || key;
 	},

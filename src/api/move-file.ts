@@ -1,8 +1,8 @@
 // biome-ignore lint/style/useNodejsImportProtocol: <explanation>
-import { dirname } from "path";
+import { dirname } from 'path';
 
-import { normalizePath, TFile, TFolder, type App } from "obsidian";
-import { getDistFilePath } from "./get-dist";
+import { normalizePath, TFile, TFolder, type App } from 'obsidian';
+import { getDistFilePath } from './get-dist';
 
 /**
  * option for function moveFileAndInlinks
@@ -67,8 +67,6 @@ export async function moveObFile(
 			}
 		}
 	}
-
-
 
 	if (fileCache?.embeds) {
 		for (const embed of fileCache.embeds) {

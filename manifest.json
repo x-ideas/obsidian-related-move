@@ -1,7 +1,7 @@
 {
 	"id": "related-move",
 	"name": "Related Move",
-	"version": "0.0.7",
+	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "A plugin for Obsidian that allows you to move file and all the related files (inlinks) in the file tree to a new folder.",
 	"author": "xjiaxiang86@gmail.com",

@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite';
-
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import builtins from 'builtin-modules';
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [],
+	plugins: [svelte()],
 	build: {
 		lib: {
 			entry: 'src/main.ts',

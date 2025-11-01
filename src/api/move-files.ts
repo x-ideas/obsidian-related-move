@@ -78,12 +78,9 @@ function buildBacklinksGraph(
 
 	// Traverse resolvedLinks to find backlinks
 	// resolvedLinks structure: Record<sourcePath, Record<targetPath, count>>
+	// We need to check ALL source files, not just those in our set,
+	// because files outside the set can still reference files inside the set
 	for (const [sourcePath, targets] of Object.entries(resolvedLinks)) {
-		// Only consider source files that are in our set
-		if (!filePathSet.has(sourcePath)) {
-			continue;
-		}
-
 		const sourceFile = app.vault.getAbstractFileByPath(sourcePath);
 		if (!(sourceFile instanceof TFile)) {
 			continue;
@@ -99,6 +96,7 @@ function buildBacklinksGraph(
 			const targetFile = app.vault.getAbstractFileByPath(targetPath);
 			if (targetFile instanceof TFile && targetFile !== sourceFile) {
 				// sourceFile references targetFile, so targetFile has a backlink from sourceFile
+				// Note: sourceFile can be either inside or outside the files set
 				const backlinks = referenceGraph.get(targetFile);
 				if (backlinks) {
 					backlinks.add(sourceFile);

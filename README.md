@@ -27,7 +27,7 @@ That's it. All the `github action related files` will be moved to the new folder
 
 ### Manual Installation
 
-1. Download the latest release from [GitHub Releases](https://github.com/your-username/obsidian-related-move-files/releases).
+1. Download the latest release from [GitHub Releases](https://github.com/x-ideas/obsidian-related-move/releases).
 2. Download the `main.js`, `manifest.json`, `styles.css` files from the release.
 3. Create a new folder named `related-move` in your Obsidian plugins folder.
 4. Copy the `main.js`, `manifest.json`, `styles.css` files to the `related-move` folder.

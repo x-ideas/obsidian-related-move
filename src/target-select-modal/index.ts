@@ -1,4 +1,5 @@
 import { type App, SuggestModal, TFolder } from "obsidian";
+import { getI18nInst } from "../configs/i18n.js";
 
 export class FolderSuggestModal extends SuggestModal<string> {
 	private folders: TFolder[];
@@ -7,11 +8,12 @@ export class FolderSuggestModal extends SuggestModal<string> {
 	constructor(app: App, onSelect: (folder: string) => void) {
 		super(app);
 
-		this.setPlaceholder("Select a folder");
+		const i18n = getI18nInst();
+		this.setPlaceholder(i18n.t("Choose a Target Folder"));
 		this.setInstructions([
-			{ command: "↑↓", purpose: "Navigate" },
-			{ command: "↵", purpose: "Choose" },
-			{ command: "Esc", purpose: "Cancel" },
+			{ command: "↑↓", purpose: i18n.t("Navigate") },
+			{ command: "↵", purpose: i18n.t("Choose") },
+			{ command: "Esc", purpose: i18n.t("Cancel") },
 		]);
 
 		this.onSelect = onSelect;

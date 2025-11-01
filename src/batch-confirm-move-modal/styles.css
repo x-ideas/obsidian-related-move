@@ -1,0 +1,138 @@
+/* Related Move Modal - Container */
+.related-move-modal-container {
+	max-height: 400px;
+	overflow-y: auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+/* Related Move Modal - Table */
+.related-move-modal-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+/* Related Move Modal - Table Header Row */
+.related-move-modal-table-header-row {
+	border-bottom: 2px solid var(--background-modifier-border);
+}
+
+/* Related Move Modal - Table Header Cell */
+.related-move-modal-table-header-cell {
+	padding: 0.5em;
+	text-align: left;
+}
+
+.related-move-modal-table-header-cell-checkbox {
+	width: 40px;
+}
+
+.related-move-modal-table-header-cell-ref-info {
+	width: 200px;
+}
+
+/* Related Move Modal - Table Row */
+.related-move-modal-table-row {
+	border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.related-move-modal-table-row-warning {
+	background-color: var(--background-modifier-hover);
+}
+
+/* Related Move Modal - Table Cell */
+.related-move-modal-table-cell {
+	padding: 0.5em;
+	vertical-align: top;
+}
+
+/* Related Move Modal - Checkbox */
+.related-move-modal-checkbox {
+	margin-top: 0.25em;
+}
+
+/* Related Move Modal - File Link */
+.related-move-modal-file-link {
+	font-weight: 500;
+	cursor: pointer;
+	color: var(--link-color);
+}
+
+/* Related Move Modal - Reference Info */
+.related-move-modal-ref-info {
+	font-size: 0.9em;
+	color: var(--text-muted);
+}
+
+.related-move-modal-ref-info-root {
+	color: var(--text-normal);
+}
+
+.related-move-modal-ref-info-warning {
+	color: var(--text-warning);
+	font-weight: 600;
+	padding: 0.25em 0.5em;
+	border-radius: 4px;
+	display: inline-block;
+}
+
+/* Related Move Modal - Reference Files */
+.related-move-modal-ref-files {
+	font-size: 0.85em;
+	color: var(--text-muted);
+}
+
+/* Related Move Modal - Reference Files List */
+.related-move-modal-ref-files-list {
+	margin: 0;
+	padding-left: 1.5em;
+	list-style-type: disc;
+}
+
+.related-move-modal-ref-files-list-item {
+	margin-bottom: 0.25em;
+}
+
+/* Related Move Modal - Reference Link */
+.related-move-modal-ref-link {
+	cursor: pointer;
+	color: var(--link-color);
+}
+
+/* Related Move Modal - Select Container */
+.related-move-modal-select-container {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+/* Related Move Modal - Related Select */
+.related-move-modal-related-select {
+	margin-bottom: 1em;
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.related-move-modal-related-select label {
+	cursor: pointer;
+	user-select: none;
+}
+
+/* Related Move Modal - Statistics */
+.related-move-modal-stats {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding: 0.5em;
+	background-color: var(--background-modifier-border);
+	border-radius: 4px;
+	font-size: 0.9em;
+}
+
+/* Related Move Modal - Button Container */
+.related-move-modal-button-container {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5em;
+	margin-top: 1em;
+}

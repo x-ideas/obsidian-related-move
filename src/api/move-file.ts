@@ -1,7 +1,5 @@
 // biome-ignore lint/style/useNodejsImportProtocol: <explanation>
 import { dirname } from "path";
-// biome-ignore lint/style/useNodejsImportProtocol: <explanation>
-import { existsSync } from "fs";
 
 import { normalizePath, TFile, TFolder, type App } from "obsidian";
 import { getDistFilePath } from "./get-dist";
@@ -69,6 +67,8 @@ export async function moveObFile(
 			}
 		}
 	}
+
+
 
 	if (fileCache?.embeds) {
 		for (const embed of fileCache.embeds) {

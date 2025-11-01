@@ -10,7 +10,7 @@ export default defineConfig({
 			entry: "src/main.ts",
 			fileName: "main",
 			formats: ["cjs"],
-			cssFileName: "style",
+			cssFileName: "styles",
 		},
 		minify: false,
 		emptyOutDir: true,

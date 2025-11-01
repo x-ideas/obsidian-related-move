@@ -1,3 +1,26 @@
 {
-	"Batch Move": "Batch Move"
+	"Related Move": "Related Move",
+	"Confirm Move File": "Confirm Move File",
+	"File is referenced by count files. Do you want to move it?": "File \"{file}\" is referenced by {count} files. Do you want to move it?",
+	"Yes": "Yes",
+	"No": "No",
+	"Related Move Files": "Related Move Files",
+	"Files to be moved. Please review and select files with multiple references.": "Files to be moved. Please review and select files with multiple references.",
+	"Root file": "Root file",
+	"Referenced by 1 file": "Referenced by {count} file",
+	"Referenced by count files - Needs confirmation": "Referenced by {count} files - Needs confirmation",
+	"Referenced by: ": "Referenced by: ",
+	"Total: total files, Selected: selected files, Needs confirmation: confirmation files": "Total: {total} files, Selected: {selected} files, Needs confirmation: {confirmation} files",
+	"Select All": "Select All",
+	"Deselect All": "Deselect All",
+	"Confirm": "Confirm",
+	"Cancel": "Cancel",
+	"File Name": "File Name",
+	"Reference Info": "Reference Info",
+	"Referenced By": "Referenced By",
+	"Choose a Target Folder": "Choose a Target Folder",
+	"Navigate": "Navigate",
+	"Choose": "Choose",
+	"Related Select": "Related Select",
+	"Cascade": "Cascade"
 }

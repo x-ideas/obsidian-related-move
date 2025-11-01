@@ -1,7 +1,7 @@
 {
 	"name": "obsidian-move-file-plugin",
 	"version": "0.1.0-beta.2",
-	"description": "A plugin for Obsidian that allows you to move file and relative links will be move automatically.",
+	"description": "A plugin for Obsidian that allows you to move file and all the related files (inlinks) in the file tree to a new folder.",
 	"main": "main.js",
 	"scripts": {
 		"dev": "vite build --watch",
@@ -13,7 +13,7 @@
 		"test": "vitest",
 		"prepare": "husky"
 	},
-	"keywords": ["obsidian", "plugin", "batch move"],
+	"keywords": ["obsidian", "plugin", "related move", "move files"],
 	"author": "xjiaxiang_86@163.com",
 	"license": "MIT",
 	"devDependencies": {

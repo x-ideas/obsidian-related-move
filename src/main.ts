@@ -5,7 +5,7 @@ import { FolderSuggestModal } from "./target-select-modal/index.js";
 
 export default class Main extends Plugin {
 	async onload() {
-		const name = getI18nInst().t("Batch Move");
+		const name = getI18nInst().t("Related Move");
 
 		this.registerEvent(
 			// add file context menu
@@ -91,15 +91,4 @@ export default class Main extends Plugin {
 
 		await this.syncFile(file);
 	};
-
-	async loadSettings() {
-		// this.settings = Object.assign({}, DefaultSetting, await this.loadData());
-	}
-
-	/**
-	 * 保存设置
-	 */
-	async saveSettings() {
-		// await this.saveData(this.settings);
-	}
 }

@@ -8,6 +8,7 @@ export function isImageFile(file: TFile): boolean {
 		file.extension === 'gif' ||
 		file.extension === 'svg' ||
 		file.extension === 'webp' ||
-		file.extension === 'bmp'
+		file.extension === 'bmp' ||
+		file.extension === 'excalidraw'
 	);
 }

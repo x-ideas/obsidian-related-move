@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/x-ideas/obsidian-related-move/compare/1.0.0...1.1.0) (2025-12-06)
+
+
+### Features
+
+* regard Excalidraw file as image too ([2bb97c4](https://github.com/x-ideas/obsidian-related-move/commit/2bb97c4c10f003a2d55beb8d40f9231ab52c9e8c))
+
 ## 1.0.0 (2025-11-01)
 
 

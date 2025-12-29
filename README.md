@@ -40,3 +40,13 @@ That's it. All the `github action related files` will be moved to the new folder
 2. Click "Install" to install the plugin.
 3. Enable the plugin in the Obsidian settings.
 4. Restart Obsidian.
+
+### Install from BRAT(Currently Recommended)
+
+    - Install [BRAT](https://github.com/TfTHacker/obsidian42-brat) if you haven't installed it yet.
+    - Enable BRAT in **Settings → Community plugins**
+    - Open Command Palette(Ctrl+P) and type `BRAT: Plugins: Add a beta plugin for test` to open the Community Plugin Manager.
+    - input the plugin repository url: https://github.com/x-ideas/obsidian-related-move
+    - select the latest version
+    - click `Add plugin` button to install the plugin.
+    - enable `related-move` plugin in **Settings → Community plugins** if it's not enabled automatically.

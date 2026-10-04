@@ -10,6 +10,7 @@
   ],
   "license": "MIT",
   "author": "xjiaxiang",
+  "type": "module",
   "main": "main.js",
   "scripts": {
     "dev": "vite build --watch",

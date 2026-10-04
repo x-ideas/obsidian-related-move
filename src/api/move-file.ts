@@ -1,41 +1,41 @@
+import { normalizePath, TFile, TFolder, type App } from 'obsidian';
 // biome-ignore lint/style/useNodejsImportProtocol: <explanation>
 import { dirname } from 'path';
 
-import { normalizePath, TFile, TFolder, type App } from 'obsidian';
 import { getDistFilePath } from './get-dist';
 
 /**
  * option for function moveFileAndInlinks
  */
 export interface IMoveFileToAstroOpt {
-	/**
-	 * obsidian app instance
-	 */
-	app: App;
+  /**
+   * obsidian app instance
+   */
+  app: App;
 
-	/**
-	 * when the dist folder has same file, how to deal with it
-	 *
-	 * true: skip
-	 * false: replace
-	 *
-	 * @default true
-	 */
-	skipFileWhenExist?: boolean;
+  /**
+   * when the dist folder has same file, how to deal with it
+   *
+   * true: skip
+   * false: replace
+   *
+   * @default true
+   */
+  skipFileWhenExist?: boolean;
 }
 
 export interface ImoveObFileResult {
-	/** is moved to dist */
-	moved?: boolean;
-	/** is not moved to dist */
-	skiped?: boolean;
-	/** is moved and replace dist file */
-	replaced?: boolean;
+  /** is moved to dist */
+  moved?: boolean;
+  /** is not moved to dist */
+  skiped?: boolean;
+  /** is moved and replace dist file */
+  replaced?: boolean;
 
-	/**
-	 * inlink files in the ob file
-	 */
-	inlinkFiles?: Set<TFile>;
+  /**
+   * inlink files in the ob file
+   */
+  inlinkFiles?: Set<TFile>;
 }
 
 /**
@@ -44,67 +44,61 @@ export interface ImoveObFileResult {
  * @param distFolder destination folder path in the vault, relative to the vault root, for example: "folder/subfolder"
  */
 export async function moveObFile(
-	file: TFile,
-	distFolder: string,
-	opt: IMoveFileToAstroOpt,
+  file: TFile,
+  distFolder: string,
+  opt: IMoveFileToAstroOpt,
 ): Promise<ImoveObFileResult> {
-	const { app, skipFileWhenExist = true } = opt;
+  const { app, skipFileWhenExist = true } = opt;
 
-	// find file inlinks
-	const fileCache = app.metadataCache.getFileCache(file);
+  // find file inlinks
+  const fileCache = app.metadataCache.getFileCache(file);
 
-	const inlinkFiles = new Set<TFile>();
-	if (fileCache?.links) {
-		for (const link of fileCache.links) {
-			// get link file
-			const inlinkFile = app.metadataCache.getFirstLinkpathDest(
-				link.link,
-				file.path,
-			);
+  const inlinkFiles = new Set<TFile>();
+  if (fileCache?.links) {
+    for (const link of fileCache.links) {
+      // get link file
+      const inlinkFile = app.metadataCache.getFirstLinkpathDest(link.link, file.path);
 
-			if (inlinkFile) {
-				inlinkFiles.add(inlinkFile);
-			}
-		}
-	}
+      if (inlinkFile) {
+        inlinkFiles.add(inlinkFile);
+      }
+    }
+  }
 
-	if (fileCache?.embeds) {
-		for (const embed of fileCache.embeds) {
-			// get embed file
-			const inlinkFile = app.metadataCache.getFirstLinkpathDest(
-				embed.link,
-				file.path,
-			);
+  if (fileCache?.embeds) {
+    for (const embed of fileCache.embeds) {
+      // get embed file
+      const inlinkFile = app.metadataCache.getFirstLinkpathDest(embed.link, file.path);
 
-			if (inlinkFile) {
-				inlinkFiles.add(inlinkFile);
-			}
-		}
-	}
+      if (inlinkFile) {
+        inlinkFiles.add(inlinkFile);
+      }
+    }
+  }
 
-	const distPath = getDistFilePath(file, distFolder);
-	const realDistFolder = dirname(distPath);
+  const distPath = getDistFilePath(file, distFolder);
+  const realDistFolder = dirname(distPath);
 
-	// folder is exist
-	if (!isFolderExist(realDistFolder, app)) {
-		await app.vault.adapter.mkdir(normalizePath(realDistFolder));
-	}
+  // folder is exist
+  if (!isFolderExist(realDistFolder, app)) {
+    await app.vault.adapter.mkdir(normalizePath(realDistFolder));
+  }
 
-	// use node fs api to judge whether the file exists
-	const isExist = isFileExist(distPath, app);
-	if (isExist && skipFileWhenExist) {
-		return { skiped: true };
-	}
+  // use node fs api to judge whether the file exists
+  const isExist = isFileExist(distPath, app);
+  if (isExist && skipFileWhenExist) {
+    return { skiped: true };
+  }
 
-	// move file
-	await app.fileManager.renameFile(file, distPath);
+  // move file
+  await app.fileManager.renameFile(file, distPath);
 
-	return {
-		moved: true,
-		replaced: isExist,
+  return {
+    moved: true,
+    replaced: isExist,
 
-		inlinkFiles,
-	};
+    inlinkFiles,
+  };
 }
 
 /**
@@ -113,25 +107,25 @@ export async function moveObFile(
  * @param app obsidian app instance
  */
 function isFolderExist(folderPath: string, app: App): boolean {
-	const vault = app.vault;
-	const folder = vault.getAbstractFileByPath(folderPath);
+  const vault = app.vault;
+  const folder = vault.getAbstractFileByPath(folderPath);
 
-	if (!folder) {
-		return false;
-	}
+  if (!folder) {
+    return false;
+  }
 
-	// 检查文件夹是否存在并且是一个文件夹
-	return folder instanceof TFolder;
+  // 检查文件夹是否存在并且是一个文件夹
+  return folder instanceof TFolder;
 }
 
 function isFileExist(filePath: string, app: App): boolean {
-	const vault = app.vault;
-	const file = vault.getAbstractFileByPath(filePath);
+  const vault = app.vault;
+  const file = vault.getAbstractFileByPath(filePath);
 
-	if (!file) {
-		return false;
-	}
+  if (!file) {
+    return false;
+  }
 
-	// 检查文件是否存在并且是一个文件
-	return file instanceof TFile;
+  // 检查文件是否存在并且是一个文件
+  return file instanceof TFile;
 }

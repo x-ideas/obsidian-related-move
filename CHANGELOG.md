@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/x-ideas/obsidian-related-move/compare/1.1.0...1.1.1) (2026-10-04)
+
+
+### Bug Fixes
+
+* update minimum app version in manifest.json to 1.0.0 ([2b39ed0](https://github.com/x-ideas/obsidian-related-move/commit/2b39ed0f794994de10e550a169f7f60e190c0c5b))
+
 ## [1.1.0](https://github.com/x-ideas/obsidian-related-move/compare/1.0.0...1.1.0) (2025-12-06)
 
 ### Features

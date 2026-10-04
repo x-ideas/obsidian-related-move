@@ -1,6 +1,6 @@
 {
   "name": "obsidian-related-move",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A plugin for Obsidian that allows you to move file and all the related files (inlinks) in the file tree to a new folder.",
   "keywords": [
     "move files",

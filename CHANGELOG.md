@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/x-ideas/obsidian-related-move/compare/1.1.1...1.1.2) (2026-10-04)
+
+
+### Bug Fixes
+
+* set vite entryFileNames to main.js and define NODE_ENV ([f9a382b](https://github.com/x-ideas/obsidian-related-move/commit/f9a382bb9cc3bddf406136ca53a999a709d85d01))
+
 ## [1.1.1](https://github.com/x-ideas/obsidian-related-move/compare/1.1.0...1.1.1) (2026-10-04)
 
 

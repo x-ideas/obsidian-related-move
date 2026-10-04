@@ -5,6 +5,9 @@ import { defineConfig } from 'vite';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [svelte()],
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  },
   build: {
     lib: {
       entry: 'src/main.ts',
@@ -17,6 +20,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         dir: 'dist',
+        entryFileNames: 'main.js',
       },
       external: [
         'obsidian',

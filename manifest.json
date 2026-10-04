@@ -4,7 +4,7 @@
   "version": "1.1.1",
   "minAppVersion": "1.0.0",
   "description": "Move a file and all related files (inlinks, embeds) to a new folder.",
-  "author": "xjiaxiang86",
+  "author": "xjiaxiang",
   "authorUrl": "https://github.com/xjiaxiang",
   "fundingUrl": "",
   "isDesktopOnly": false

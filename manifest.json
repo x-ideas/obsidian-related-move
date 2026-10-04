@@ -2,7 +2,7 @@
   "id": "related-move",
   "name": "Related Move",
   "version": "1.1.0",
-  "minAppVersion": "0.15.0",
+  "minAppVersion": "1.0.0",
   "description": "Move a file and all related files (inlinks, embeds) to a new folder.",
   "author": "xjiaxiang86",
   "authorUrl": "https://github.com/xjiaxiang",
